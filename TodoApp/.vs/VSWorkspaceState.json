@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\TodoApp.Api",
+    "\\TodoApp.Api\\Controllers",
+    "\\TodoApp.Api\\Data",
+    "\\TodoApp.Api\\Migrations",
+    "\\TodoApp.Api\\Models"
+  ],
+  "SelectedNode": "\\TodoApp.Api\\TodoApp.db",
+  "PreviewInSolutionExplorer": false
+}
