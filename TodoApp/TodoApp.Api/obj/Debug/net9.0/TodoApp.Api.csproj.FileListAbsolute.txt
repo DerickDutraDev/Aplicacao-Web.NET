@@ -161,3 +161,4 @@ C:\Users\PC\Documents\TodoApp\TodoApp.Api\obj\Debug\net9.0\refint\TodoApp.Api.dl
 C:\Users\PC\Documents\TodoApp\TodoApp.Api\obj\Debug\net9.0\TodoApp.Api.pdb
 C:\Users\PC\Documents\TodoApp\TodoApp.Api\obj\Debug\net9.0\TodoApp.Api.genruntimeconfig.cache
 C:\Users\PC\Documents\TodoApp\TodoApp.Api\obj\Debug\net9.0\ref\TodoApp.Api.dll
+C:\Users\PC\Documents\TodoApp\TodoApp.Api\obj\Debug\net9.0\TodoApp.Api.sourcelink.json

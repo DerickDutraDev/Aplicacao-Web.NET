@@ -7,6 +7,6 @@
     "\\TodoApp.Api\\Migrations",
     "\\TodoApp.Api\\Models"
   ],
-  "SelectedNode": "\\TodoApp.Api\\TodoApp.db",
+  "SelectedNode": "\\TodoApp.Api\\Controllers\\TodoItemsControllers.cs",
   "PreviewInSolutionExplorer": false
 }
