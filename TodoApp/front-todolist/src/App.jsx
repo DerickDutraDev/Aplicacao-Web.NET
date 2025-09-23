@@ -1,35 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from "react";
+import axios from "axios";
+import TodoList from "./components/TodoList";
+import TodoForm from "./components/TodoForm";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    const fetchTodos = async () => {
+      try {
+        const response = await axios.get("http://localhost:5160/api/TodoItems");
+        setTodos(response.data);
+      } catch (error) {
+        console.error("Houve um erro ao buscar as tarefas:", error);
+      }
+    };
+
+    fetchTodos();
+  }, []);
+
+  const handleTodoAdded = (newTodo) => {
+    setTodos([...todos, newTodo]);
+  };
+
+  const handleTodoDeleted = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5160/api/TodoItems/${id}`);
+      setTodos(todos.filter((todo) => todo.id !== id));
+    } catch (error) {
+      console.error("Houve um erro ao excluir a tarefa:", error);
+    }
+  };
+
+  const handleTodoUpdated = async (updatedTodo) => {
+    try {
+      await axios.put(
+        `http://localhost:5160/api/TodoItems/${updatedTodo.id}`,
+        updatedTodo
+      );
+
+      setTodos(
+        todos.map((todo) => (todo.id === updatedTodo.id ? updatedTodo : todo))
+      );
+    } catch (error) {
+      console.error("Houve um erro ao atualizar a tarefa:", error);
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+    <div className="container">
+      <h1>Lista de Tarefas</h1>
+      <TodoForm onTodoAdded={handleTodoAdded} />
+      {todos.length > 0 ? (
+        <TodoList
+          todos={todos}
+          onDelete={handleTodoDeleted}
+          onUpdate={handleTodoUpdated}
+        />
+      ) : (
+        <p className="no-tasks">
+          Nenhuma tarefa encontrada. Adicione uma nova!
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      )}
+    </div>
+  );
 }
 
-export default App
+export default App;

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models; 
+using Microsoft.OpenApi.Models;
 using TodoApp.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +23,19 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+
+            builder.WithOrigins("http://localhost:5173")
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 
@@ -33,10 +46,12 @@ if (app.Environment.IsDevelopment())
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "TodoApp API v1");
         c.RoutePrefix = string.Empty;
-    }); 
+    });
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 

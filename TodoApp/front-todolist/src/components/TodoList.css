@@ -1,0 +1,72 @@
+/* src/components/TodoList.css */
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  background-color: var(--card-bg); /* Fundo dos itens da lista */
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.todo-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.todo-text {
+  flex-grow: 1;
+  text-align: left;
+  font-size: 16px;
+  color: var(--text-color); /* Cor do texto padrão */
+  transition: color 0.3s ease;
+}
+
+.todo-text.completed {
+  text-decoration: line-through;
+  color: var(--muted-text-color); /* Texto secundário */
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actions button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  color: #fff; /* Cor do texto nos botões */
+}
+
+/* O roxo é aplicado apenas no botão de editar */
+.edit-btn {
+  background-color: var(--accent-purple);
+}
+
+.edit-btn:hover {
+  background-color: var(--accent-purple-hover);
+}
+
+/* O vermelho é usado apenas no botão de deletar */
+.delete-btn {
+  background-color: var(--delete-red);
+}
+
+.delete-btn:hover {
+  background-color: var(--delete-red-hover);
+}
